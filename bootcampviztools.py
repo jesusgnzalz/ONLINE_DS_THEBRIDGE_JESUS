@@ -205,7 +205,7 @@ def plot_grouped_boxplots(df, cat_col, num_col):
 
 
 
-def plot_grouped_histograms(df, cat_col, num_col, group_size):
+def plot_grouped_histograms(df, cat_col, num_col, group_size, bins = "auto"):
     unique_cats = df[cat_col].unique()
     num_cats = len(unique_cats)
 
@@ -215,7 +215,7 @@ def plot_grouped_histograms(df, cat_col, num_col, group_size):
         
         plt.figure(figsize=(10, 6))
         for cat in subset_cats:
-            sns.histplot(subset_df[subset_df[cat_col] == cat][num_col], kde=True, label=str(cat))
+            sns.histplot(subset_df[subset_df[cat_col] == cat][num_col], kde=True, label=str(cat), bins = bins)
         
         plt.title(f'Histograms of {num_col} for {cat_col} (Group {i//group_size + 1})')
         plt.xlabel(num_col)
